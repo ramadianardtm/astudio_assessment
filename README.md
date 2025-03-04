@@ -237,11 +237,11 @@ Payload:
   ],
   "removed_attributes": []
 }
-```
+
 Notes:
 If attribute_value_id is null, it means create a new attribute.
 If removed_attributes contains an attribute_value_id, it means delete that attribute from the project.
-```sh
+
 Response:
 {
   "data": "",
