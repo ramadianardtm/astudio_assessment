@@ -53,22 +53,22 @@ https://yourdomain.com/api/v1
 ---
 
 ## Project APIs (Requires Authentication)  
-| Method  | Endpoint                              | Description                                |
-|---------|--------------------------------------|--------------------------------------------|
-| `GET`   | `/projects`                         | Get a list of all projects                |
-| `GET`   | `/project/{id}`                     | Get details of a project by ID            |
-| `POST`  | `/create-project`                   | Create a new project                      |
-| `PUT`   | `/update-project/{id}`              | Update project details by ID              |
-| `DELETE`| `/delete-project/{id}`              | Delete a project by ID                    |
-| `POST`  | `/project/{id}/assign-users`        | Assign users to a project                 |
-| `DELETE`| `/projects/{projectId}/users/{userId}/unassign` | Unassign a user from a project |
+| Method  | Endpoint                              | Description                                                      |
+|---------|--------------------------------------|-------------------------------------------------------------------|
+| `GET`   | `/projects`                         | Get a list of all projects                                         |
+| `GET`   | `/project/{id}`                     | Get details of a project by ID                                     |
+| `POST`  | `/create-project`                   | Create a new project and create attribute value                    |
+| `PUT`   | `/update-project/{id}`              | Update project details by ID and update or create attribute value |
+| `DELETE`| `/delete-project/{id}`              | Delete a project by ID                                             |
+| `POST`  | `/project/{id}/assign-users`        | Assign users to a project                                          |
+| `DELETE`| `/projects/{projectId}/users/{userId}/unassign` | Unassign a user from a project                         |
 
 ---
 
 ## Timesheet APIs (Requires Authentication)  
 | Method  | Endpoint                         | Description                        |
 |---------|----------------------------------|------------------------------------|
-| `POST`  | `/timesheets/log`               | Log work hours for a project      |
+| `POST`  | `/timesheets/log`               | Input timesheet log for a project      |
 | `GET`   | `/timesheets`                   | Get all logged timesheets         |
 | `PUT`   | `/update-timesheet/{timesheet_id}` | Update a specific timesheet entry |
 | `DELETE`| `/delete-timesheet/{timesheet_id}` | Delete a specific timesheet entry |
@@ -87,4 +87,34 @@ https://yourdomain.com/api/v1
 ---
 
 ## Authentication  
-Most endpoints require authentication using **Bearer Token** in the `Authorization` header:  
+Most endpoints require authentication using **Bearer Token** in the `Authorization` header:
+Authorization: Bearer YOUR_ACCESS_TOKEN
+
+
+---
+
+## Example Requests  
+
+### Login  
+#### Request:  
+```sh
+curl -X POST https://yourdomain.com/api/v1/login \
+     -H "Content-Type: application/json" \
+     -d '{"email": "user@example.com", "password": "yourpassword"}'
+
+Response:
+{
+  "data": {
+    "id": 1,
+    "first_name": "Ramadian",
+    "last_name": "Arditama",
+    "email": "ramadianardtm@gmail.com"
+  },
+  "auth_token": "YOUR_ACCESS_TOKEN",
+  "meta": {
+    "message": "Login successful.",
+    "status_code": 200
+  }
+}
+```
+After a successful login, use the auth_token in the Authorization header for all authenticated requests.
