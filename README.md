@@ -93,6 +93,11 @@ Authorization: Bearer YOUR_ACCESS_TOKEN
 
 ---
 
+## General API Notes
+- Ensure to send the Authorization header with the Bearer YOUR_ACCESS_TOKEN for authenticated requests.
+- {project_id} and {user_id} in endpoints should be replaced with actual IDs.
+- The API responses follow a standard structure with "meta" containing "message" and "status_code".
+
 ## Example Requests  
 
 ### Register  
@@ -365,7 +370,103 @@ Notes:
 This API removes a user from the given project.
 All timesheets related to this user in the project will also be deleted.
 ```
-## General API Notes
-- Ensure to send the Authorization header with the Bearer YOUR_ACCESS_TOKEN for authenticated requests.
-- {project_id} and {user_id} in endpoints should be replaced with actual IDs.
-- The API responses follow a standard structure with "meta" containing "message" and "status_code".
+## Log Timesheet
+```sh
+Endpoint:
+POST /api/v1/timesheets/log
+
+Payload:
+{
+  "task_name": "Survey Location",
+  "date": "2025-01-01",
+  "hours": 40,
+  "project_id": 1
+}
+
+Response:
+{
+  "data": "",
+  "meta": {
+    "message": "Timesheet logged successfully.",
+    "status_code": 200
+  }
+}
+
+Notes:
+- The user_id is automatically taken from the authenticated user.
+- project_id must be provided to log the timesheet under the correct project.
+```
+
+## Get All Timesheets
+```sh
+Endpoint:
+GET /api/v1/timesheets
+
+Response:
+{
+  "data": [
+    {
+      "id": 1,
+      "task_name": "Survey Location",
+      "date": "2025-01-01",
+      "hours": "40",
+      "project": {
+        "id": 1,
+        "name": "Project A",
+        "status": "active",
+        "users": [
+          {
+            "id": 1,
+            "first_name": "Ramadian",
+            "last_name": "Arditama",
+            "email": "ramadianardtm@gmail.com"
+          }
+        ]
+      }
+    }
+  ],
+  "meta": {
+    "message": "Successfully get timesheets.",
+    "status_code": 200
+  }
+}
+
+Notes:
+- Fetches all logged timesheets with project and user details.
+```
+
+## Update Timesheet
+```sh
+Endpoint:
+PUT /api/v1/update-timesheet/{timesheet_id}
+
+Payload:
+{
+  "task_name": "Updated Task",
+  "date": "2025-02-01",
+  "hours": 30
+}
+
+Response:
+{
+  "data": "",
+  "meta": {
+    "message": "Successfully update timesheet.",
+    "status_code": 200
+  }
+}
+```
+## Delete Timesheet
+```sh
+Endpoint:
+DELETE /api/v1/delete-timesheet/{timesheet_id}
+
+Response:
+{
+  "data": "",
+  "meta": {
+    "message": "Successfully delete timesheet.",
+    "status_code": 200
+  }
+}
+```
