@@ -22,3 +22,4 @@ After finish cloning the project do these steps:
    ```sh
    php artisan serve
    ```
+Test
