@@ -6,22 +6,23 @@ After finish cloning the project do these steps:
    ```sh
    composer install
    ```
-2. Reset database migrations and generate seeders
+2. Create .env file (if not available), copy and paste the .env.example and change the DB_DATABASE with your actual database.
+3. Reset database migrations and generate seeders
    ```sh
    php artisan migrate:fresh --seed
 
    Note:
    - Make sure to match the DB_DATABASE in your .env with your actual database. 
    ```
-3. Generate application key
+4. Generate application key
    ```sh
    php artisan key:generate
    ```
-4. Install and setup Laravel Passport
+5. Install and setup Laravel Passport
    ```sh
    php artisan passport:install
    ```
-5. Start the development server
+6. Start the development server
    ```sh
    php artisan serve
    ```
