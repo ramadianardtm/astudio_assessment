@@ -112,7 +112,7 @@ Use the following credentials to test the application:
 - **Password:** password123
 
 ## Postman API Collection
-Use this link to download the Postman API Collection : https://drive.google.com/drive/folders/18l20pjpGp7flnfW7B8UT5Q5UIErk8d1S?usp=sharing
+Use this link to download the Postman API Collection : https://www.dropbox.com/s/b6raelij48kx1ou/Astudio%20Assessment.postman_collection.json?st=ciccfh1n&dl=0
 
 ## Example Requests  
 
