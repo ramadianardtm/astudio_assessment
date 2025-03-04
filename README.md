@@ -1,5 +1,5 @@
 # ASTUDIO Assessment - Ramadian Arditama Harianto
-Assessment for PHP Laravel Developer position at ASTUDIO
+Assessment for PHP Laravel Developer position at ASTUDIO.
 # Setup Instruction
 After finish cloning the project do these steps:
 1. Run the following command to install required dependencies:
@@ -102,6 +102,7 @@ Authorization: Bearer YOUR_ACCESS_TOKEN
 - Ensure to send the Authorization header with the Bearer YOUR_ACCESS_TOKEN for authenticated requests.
 - {project_id} and {user_id} in endpoints should be replaced with actual IDs.
 - The API responses follow a standard structure with "meta" containing "message" and "status_code".
+- Created using PHP 8.1.25
 
 ## Test Credentials
 
