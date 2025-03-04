@@ -47,7 +47,7 @@ https://yourdomain.com/api/v1
 | Method  | Endpoint         | Description                            |
 |---------|----------------|----------------------------------------|
 | `PUT`   | `/update-profile` | Update the authenticated user's profile |
-| `GET`   | `/user/{id}`    | Get details of a user by ID           |
+| `GET`   | `/user/{user_id}`    | Get details of a user by ID           |
 | `GET`   | `/users`        | Get a list of all users               |
 
 ---
@@ -56,12 +56,12 @@ https://yourdomain.com/api/v1
 | Method  | Endpoint                              | Description                                                      |
 |---------|--------------------------------------|-------------------------------------------------------------------|
 | `GET`   | `/projects`                         | Get a list of all projects                                         |
-| `GET`   | `/project/{id}`                     | Get details of a project by ID                                     |
+| `GET`   | `/project/{project_id}`                     | Get details of a project by ID                                     |
 | `POST`  | `/create-project`                   | Create a new project and create attribute value                    |
-| `PUT`   | `/update-project/{id}`              | Update project details by ID and update or create attribute value |
-| `DELETE`| `/delete-project/{id}`              | Delete a project by ID                                             |
-| `POST`  | `/project/{id}/assign-users`        | Assign users to a project                                          |
-| `DELETE`| `/projects/{projectId}/users/{userId}/unassign` | Unassign a user from a project                         |
+| `PUT`   | `/update-project/{project_id}`              | Update project details by ID and update or create attribute value |
+| `DELETE`| `/delete-project/{project_id}`              | Delete a project by ID                                             |
+| `POST`  | `/project/{project_id}/assign-users`        | Assign users to a project                                          |
+| `DELETE`| `/projects/{project_id}/users/{user_id}/unassign` | Unassign a user from a project                         |
 
 ---
 
@@ -79,10 +79,10 @@ https://yourdomain.com/api/v1
 | Method  | Endpoint               | Description                      |
 |---------|------------------------|----------------------------------|
 | `GET`   | `/attributes`          | Get a list of all attributes    |
-| `GET`   | `/attribute/{id}`      | Get details of a specific attribute |
+| `GET`   | `/attribute/{attribute_id}`      | Get details of a specific attribute |
 | `POST`  | `/create-attribute`    | Create a new attribute          |
-| `PUT`   | `/update-attribute/{id}` | Update an existing attribute    |
-| `DELETE`| `/delete-attribute/{id}` | Delete an attribute by ID       |
+| `PUT`   | `/update-attribute/{attribute_id}` | Update an existing attribute    |
+| `DELETE`| `/delete-attribute/{attribute_id}` | Delete an attribute by ID       |
 
 ---
 
@@ -155,3 +155,99 @@ Response:
 }
 ```
 After a successful login, use the auth_token in the Authorization header for all authenticated requests.
+
+# Attributes API
+## Create Attribute
+```sh
+Endpoint:
+POST https://yourdomain.com/api/v1/create-attribute
+
+Payload:
+{
+  "name": "Attribute Name",
+  "type": "Attribute Type"
+}
+
+Response:
+{
+  "data": "",
+  "meta": {
+    "message": "Successfully created attributes.",
+    "status_code": 200
+  }
+}
+```
+
+# Project API
+## Create Project
+```sh
+Endpoint:
+POST https://yourdomain.com/api/v1/create-project
+
+Payload:
+{
+  "name": "Project A",
+  "status": "active",
+  "attributes": [
+    {
+      "attribute_id": 1,
+      "value": "Finance"
+    },
+    {
+      "attribute_id": 2,
+      "value": "2025-01-01"
+    }
+  ]
+}
+
+Response:
+{
+  "data": "",
+  "meta": {
+    "message": "Successfully created project.",
+    "status_code": 200
+  }
+}
+```
+## Update Project
+```sh
+Endpoint:
+POST https://yourdomain.com/api/v1/update-project/{project_id}
+
+Payload:
+{
+  "name": "Project A Update",
+  "status": "active",
+  "attributes": [
+    {
+      "attribute_value_id": 9,
+      "attribute_id": 1,
+      "value": "Engineering"
+    },
+    {
+      "attribute_value_id": 10,
+      "attribute_id": 2,
+      "value": "2025-01-01"
+    },
+    {
+      "attribute_value_id": null,
+      "attribute_id": 2,
+      "value": "2026-01-01"
+    }
+  ],
+  "removed_attributes": []
+}
+```
+Notes:
+If attribute_value_id is null, it means create a new attribute.
+If removed_attributes contains an attribute_value_id, it means delete that attribute from the project.
+```sh
+Response:
+{
+  "data": "",
+  "meta": {
+    "message": "Successfully updated project.",
+    "status_code": 200
+  }
+}
+```
