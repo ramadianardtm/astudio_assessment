@@ -9,10 +9,11 @@ After finish cloning the project do these steps:
 2. Create .env file (if not available), copy and paste the .env.example and change the DB_DATABASE with your actual database.
 3. Reset database migrations and generate seeders
    ```sh
-   php artisan migrate:fresh --seed
+   php artisan migrate --seed
 
    Note:
-   - Make sure to match the DB_DATABASE in your .env with your actual database. 
+   - Use --seed to run seeder to automatically create data based on configured seeder
+   - Make sure to match the DB_DATABASE in your .env with your actual database 
    ```
 4. Generate application key
    ```sh
