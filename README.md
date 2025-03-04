@@ -161,6 +161,132 @@ Response:
 ```
 After a successful login, use the auth_token in the Authorization header for all authenticated requests.
 
+### Update Profile  
+```sh
+Endpoint:
+POST https://yourdomain.com/api/v1/change-password
+
+Payload:
+{
+  "old_password": "yourOldPassword",
+  "new_password": "yourNewPassword"
+}
+
+Response:
+{
+  "data": "",
+  "meta": {
+    "message": "Password changed successfully.",
+    "status_code": 200
+  }
+}
+
+Notes:
+- The old_password must match the user's current password before the new password is accepted.
+```
+## Update Profile
+```sh
+Endpoint:
+PUT /api/v1/update-profile
+
+Payload:
+{
+  "first_name": "Ramadian Update",
+  "last_name": "Arditama",
+  "email": "ramadianardtm@gmail.com"
+}
+
+Response:
+{
+  "data": "",
+  "meta": {
+    "message": "Update profile successful.",
+    "status_code": 200
+  }
+}
+Notes:
+- Only the authenticated user can update their own profile.
+- The email field must remain unique but does not require an update.
+```
+## Get User Detail
+```sh
+Endpoint:
+GET /api/v1/user/{user_id}
+
+Response:
+{
+  "data": {
+    "id": 1,
+    "first_name": "Ramadian Update",
+    "last_name": "Arditama A",
+    "email": "ramadianardtm@gmail.com",
+    "projects": [
+      {
+        "id": 16,
+        "name": "Project A",
+        "status": "active",
+        "attributes": [
+          { "id": 9, "attribute_id": 1, "project_id": 16, "value": "Engineering" },
+          { "id": 10, "attribute_id": 2, "project_id": 16, "value": "2025-01-01" },
+          { "id": 12, "attribute_id": 3, "project_id": 16, "value": "2026-01-01" }
+        ],
+        "timesheets": [
+          { "id": 1, "task_name": "Survey Location", "date": "2025-01-01", "hours": "1" },
+          { "id": 2, "task_name": "Survey Location 2", "date": "2025-01-02", "hours": "1" }
+        ]
+      }
+  "meta": {
+    "message": "Successfully get user.",
+    "status_code": 200
+  }
+}
+```
+## Get All Users
+```sh
+Endpoint:
+GET /api/v1/users
+
+Response:
+{
+  "data": [
+    {
+      "id": 1,
+      "first_name": "Ramadian Update",
+      "last_name": "Arditama A",
+      "email": "ramadianardtm@gmail.com",
+      "projects": []
+    },
+    {
+      "id": 3,
+      "first_name": "Arya",
+      "last_name": "Arditama",
+      "email": "ramadianardtm3@gmail.com",
+      "projects": [
+          {
+            "id": 16,
+            "name": "Project A",
+            "status": "active",
+            "attributes": [
+              { "id": 9, "attribute_id": 1, "project_id": 16, "value": "Engineering" },
+              { "id": 10, "attribute_id": 2, "project_id": 16, "value": "2025-01-01" },
+              { "id": 12, "attribute_id": 3, "project_id": 16, "value": "2026-01-01" }
+            ],
+            "timesheets": [
+              { "id": 1, "task_name": "Survey Location", "date": "2025-01-01", "hours": "1" },
+              { "id": 2, "task_name": "Survey Location 2", "date": "2025-01-02", "hours": "1" }
+            ]
+        }
+    ]
+    },
+  ],
+  "meta": {
+    "message": "Successfully get users.",
+    "status_code": 200
+  }
+}
+Notes:
+- Retrieves a list of all users along with their assigned projects and timesheets.
+```
 # Attributes API
 ## Create Attribute
 ```sh
