@@ -98,9 +98,14 @@ Authorization: Bearer YOUR_ACCESS_TOKEN
 ### Login  
 #### Request:  
 ```sh
-curl -X POST https://yourdomain.com/api/v1/login \
-     -H "Content-Type: application/json" \
-     -d '{"email": "user@example.com", "password": "yourpassword"}'
+POST https://yourdomain.com/api/v1/login
+
+Payload:
+{
+  "email": "user@example.com",
+  "password": "yourpassword"
+}
+
 
 Response:
 {
