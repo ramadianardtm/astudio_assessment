@@ -112,7 +112,7 @@ Use the following credentials to test the application:
 - **Password:** password123
 
 ## Postman API Collection
-Use this link to download the Postman API Collection : https://drive.google.com/drive/folders/18l20pjpGp7flnfW7B8UT5Q5UIErk8d1S
+Use this link to download the Postman API Collection : https://drive.google.com/drive/folders/18l20pjpGp7flnfW7B8UT5Q5UIErk8d1S?usp=sharing
 
 ## Example Requests  
 
