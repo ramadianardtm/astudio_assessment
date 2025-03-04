@@ -191,11 +191,15 @@ Payload:
   "attributes": [
     {
       "attribute_id": 1,
-      "value": "Finance"
+      "value": "Engineering"
     },
     {
       "attribute_id": 2,
       "value": "2025-01-01"
+    },
+    {
+      "attribute_id": 3,
+      "value": "2026-01-01"
     }
   ]
 }
@@ -216,22 +220,22 @@ POST https://yourdomain.com/api/v1/update-project/{project_id}
 
 Payload:
 {
-  "name": "Project A Update",
+  "name": "Project A",
   "status": "active",
   "attributes": [
     {
-      "attribute_value_id": 9,
+      "attribute_value_id": 1,
       "attribute_id": 1,
       "value": "Engineering"
     },
     {
-      "attribute_value_id": 10,
+      "attribute_value_id": 2,
       "attribute_id": 2,
       "value": "2025-01-01"
     },
     {
       "attribute_value_id": null,
-      "attribute_id": 2,
+      "attribute_id": 3,
       "value": "2026-01-01"
     }
   ],
@@ -251,3 +255,117 @@ Response:
   }
 }
 ```
+## Get Project
+```sh
+Example Request (Without Filters):
+GET https://yourdomain.com/api/v1/projects
+
+Example Request (With Filters):
+GET http://yourdomain.com/api/v1/projects?filters[name][LIKE]=Project A&filters[start_date][>]=2024
+
+Response:
+
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "Project A",
+      "status": "active",
+      "attributes": {
+        "department": "Engineering",
+        "start_date": "2025-01-01",
+        "end_date": "2026-01-01"
+      },
+      "assigned_users": [
+        {
+          "id": 1,
+          "first_name": "Ramadian",
+          "last_name": "Arditama",
+          "email": "ramadianardtm@gmail.com",
+          "timesheets": [
+            {
+              "id": 1,
+              "task_name": "Survey Location",
+              "date": "2025-01-01",
+              "hours": "40"
+            },
+            {
+              "id": 2,
+              "task_name": "Survey Location",
+              "date": "2025-01-01",
+              "hours": "24"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "meta": {
+    "message": "Successfully retrieved projects.",
+    "status_code": 200
+  }
+}
+```
+## Delete Project
+```sh
+Endpoint:
+DELETE /api/v1/delete-project/{project_id}
+
+Example Request:
+DELETE https://yourdomain.com/api/v1/delete-project/1
+
+{
+  "data": "",
+  "meta": {
+    "message": "Successfully deleted project.",
+    "status_code": 200
+  }
+}
+```
+## Assign User to Project
+```sh
+### **Assign Users to a Project**
+Endpoint: 
+`POST /api/v1/project/{project_id}/assign-users`
+
+Payload:
+{
+  "user_ids": [1]
+}
+
+Response:
+{
+  "data": "",
+  "meta": {
+    "message": "Successfully assigned project.",
+    "status_code": 200
+  }
+}
+```
+
+## Unassign User from a Project
+```sh
+### **Unassign User from a Project**
+Endpoint:
+DELETE /api/v1/projects/{project_id}/users/{user_id}/unassign
+
+Example Request:
+DELETE https://yourdomain.com/api/v1/projects/1/users/1/unassign
+
+Response:
+{
+  "data": "",
+  "meta": {
+    "message": "User unassigned from project and timesheets deleted.",
+    "status_code": 200
+  }
+}
+Notes:
+
+This API removes a user from the given project.
+All timesheets related to this user in the project will also be deleted.
+```
+## General API Notes
+- Ensure to send the Authorization header with the Bearer YOUR_ACCESS_TOKEN for authenticated requests.
+- {project_id} and {user_id} in endpoints should be replaced with actual IDs.
+- The API responses follow a standard structure with "meta" containing "message" and "status_code".
