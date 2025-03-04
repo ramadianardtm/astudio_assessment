@@ -95,6 +95,38 @@ Authorization: Bearer YOUR_ACCESS_TOKEN
 
 ## Example Requests  
 
+### Register  
+#### Request:  
+```sh
+POST https://yourdomain.com/api/v1/register
+
+Payload:
+{
+  "first_name": "user first name",
+  "last_name": "user last name",
+  "email": "user@example.com",
+  "password": "yourpassword"
+}
+
+
+Response:
+{
+  "data": {
+    "user": {
+        "id": 1,
+        "first_name": "Ramadian",
+        "last_name": "Arditama",
+        "email": "ramadianardtm@gmail.com"
+    },
+   "token": "YOUR_ACCESS_TOKEN",
+  "meta": {
+    "message": "Successfully create user.",
+    "status_code": 200
+  }
+}
+```
+After a successful register, you can go to login API using the registered user email and password. token in the response is optional for auto logged in after registration.
+
 ### Login  
 #### Request:  
 ```sh
