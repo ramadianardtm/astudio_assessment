@@ -103,6 +103,13 @@ Authorization: Bearer YOUR_ACCESS_TOKEN
 - {project_id} and {user_id} in endpoints should be replaced with actual IDs.
 - The API responses follow a standard structure with "meta" containing "message" and "status_code".
 
+## Test Credentials
+
+Use the following credentials to test the application:
+### User Account
+- **Email:** ramadianardtm@gmail.com
+- **Password:** password123
+
 ## Example Requests  
 
 ### Register  
