@@ -177,7 +177,7 @@ Response:
 ```
 After a successful login, use the auth_token in the Authorization header for all authenticated requests.
 
-### Update Profile  
+## Change Password  
 ```sh
 Endpoint:
 POST https://yourdomain.com/api/v1/change-password
